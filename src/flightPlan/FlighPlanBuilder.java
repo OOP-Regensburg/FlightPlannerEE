@@ -1,7 +1,5 @@
 package flightPlan;
 
-import org.omg.IOP.ComponentIdHelper;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -16,7 +14,7 @@ public class FlighPlanBuilder {
     }
 
     public void addRoute(String[] route) throws InvalidRouteFormatException {
-        if(route.length != 2) {
+        if (route.length != 2) {
             throw new InvalidRouteFormatException();
         }
         addRoute(route[0], route[1]);
@@ -24,7 +22,7 @@ public class FlighPlanBuilder {
 
     public void addRoute(String from, String to) {
         ArrayList<String> route = routes.get(from);
-        if(route == null) {
+        if (route == null) {
             routes.put(from, new ArrayList<String>());
             route = routes.get(from);
         }

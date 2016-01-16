@@ -5,5 +5,6 @@ package custom;
  */
 public interface CustomInputStream {
     public int readInt(String prompt);
+
     public String readLine(String prompt);
 }

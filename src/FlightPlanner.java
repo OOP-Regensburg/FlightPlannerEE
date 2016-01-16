@@ -11,7 +11,6 @@ import reader.AsyncFileReader;
 import reader.FileReaderListener;
 import values.Values;
 
-import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
 
@@ -38,12 +37,12 @@ public class FlightPlanner extends ConsoleProgram implements FileReaderListener,
     private void createDialogs() {
         UserDialogBuilder dialogBuilder = new UserDialogBuilder();
         dialogProxy = new DialogProxy(this);
-        for(String orgin: flightPlan.getOrigins()) {
+        for (String orgin : flightPlan.getOrigins()) {
             try {
                 ArrayList<String> destinations = flightPlan.getDestinationsForOrigin(orgin);
                 dialogBuilder.addTitle(orgin);
                 dialogBuilder.addPrompt(Values.Strings.EN.DIALOG_PROMPT_PREFFIX + orgin + Values.Strings.EN.DIALOG_PROMPT_SUFFIX);
-                for(String destination: destinations) {
+                for (String destination : destinations) {
                     dialogBuilder.addOption(destination);
                 }
                 dialogProxy.addDialog(dialogBuilder.getDialog());
@@ -69,7 +68,7 @@ public class FlightPlanner extends ConsoleProgram implements FileReaderListener,
 
     private void showNextDestinations(String origin) {
         try {
-            if(origin.equals(flightRoute.getOrigin())) {
+            if (origin.equals(flightRoute.getOrigin())) {
                 showCompletedRoute();
             } else {
                 flightRoute.addDestination(origin);

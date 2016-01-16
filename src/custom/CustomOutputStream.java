@@ -5,5 +5,6 @@ package custom;
  */
 public interface CustomOutputStream {
     public void print(String string);
+
     public void println(String string);
 }

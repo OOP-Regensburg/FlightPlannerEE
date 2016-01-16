@@ -1,9 +1,8 @@
 package flightPlan;
 
-import javax.lang.model.element.NestingKind;
-import java.io.File;
+import values.Values;
+
 import java.io.PrintStream;
-import java.text.spi.BreakIteratorProvider;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -24,7 +23,7 @@ public class FlightPlan {
     }
 
     public boolean isValidOrigin(String origin) {
-        if(flightPlan.keySet().contains(origin)) {
+        if (flightPlan.keySet().contains(origin)) {
             return true;
         } else {
             return false;
@@ -32,22 +31,22 @@ public class FlightPlan {
     }
 
     public boolean isValidRoute(String from, String to) throws InvalidOriginException, NoDestinationsAvailableException {
-        if(!isValidOrigin(from)) {
+        if (!isValidOrigin(from)) {
             throw new InvalidOriginException();
         }
         ArrayList<String> destinations = flightPlan.get(from);
-        if(destinations.size() < 1) {
+        if (destinations.size() < 1) {
             throw new NoDestinationsAvailableException();
         }
         return destinations.contains(to);
     }
 
     public ArrayList<String> getDestinationsForOrigin(String origin) throws InvalidOriginException, NoDestinationsAvailableException {
-        if(!isValidOrigin(origin)) {
+        if (!isValidOrigin(origin)) {
             throw new InvalidOriginException();
         }
         ArrayList<String> destinations = flightPlan.get(origin);
-        if(destinations.size() < 1) {
+        if (destinations.size() < 1) {
             throw new NoDestinationsAvailableException();
         }
         return destinations;
@@ -62,13 +61,13 @@ public class FlightPlan {
     }
 
     public void print(PrintStream out) {
-        for(String origin: flightPlan.keySet()) {
+        for (String origin : flightPlan.keySet()) {
             out.print(getFormatedOriginStringForOutput(origin) + "\t");
             Iterator destinations = flightPlan.get(origin).iterator();
-            while(destinations.hasNext()) {
+            while (destinations.hasNext()) {
                 out.print(destinations.next());
-                if(destinations.hasNext()) {
-                    out.print(", ");
+                if (destinations.hasNext()) {
+                    out.print(Values.Strings.LIST_DELIMITER_FOR_OUTPUT);
                 }
             }
             out.print(System.lineSeparator());
@@ -77,9 +76,9 @@ public class FlightPlan {
 
     private String getFormatedOriginStringForOutput(String origin) {
         int maxCharacters = getMaxNumbersOfCharsInOrigin();
-        if(origin.length() < maxCharacters) {
-            for(int i = origin.length(); i < maxCharacters; i++) {
-                origin += " ";
+        if (origin.length() < maxCharacters) {
+            for (int i = origin.length(); i < maxCharacters; i++) {
+                origin += Values.Strings.SINGLE_WHITESPACE;
             }
         }
         return origin;
@@ -87,8 +86,8 @@ public class FlightPlan {
 
     private int getMaxNumbersOfCharsInOrigin() {
         int maxChars = -1;
-        for(String origin: flightPlan.keySet()) {
-            if(maxChars < origin.length()) {
+        for (String origin : flightPlan.keySet()) {
+            if (maxChars < origin.length()) {
                 maxChars = origin.length();
             }
         }

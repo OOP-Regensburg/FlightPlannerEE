@@ -1,8 +1,5 @@
 package dialog;
 
-import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion;
-import processor.StringSplitter;
-
 import java.util.ArrayList;
 
 /**
@@ -36,12 +33,12 @@ public class UserDialogBuilder {
     }
 
     public UserDialog getDialog() throws DialogParametersMissingException {
-        if(title.isEmpty() || prompt.isEmpty() || options.size() == 0) {
+        if (title.isEmpty() || prompt.isEmpty() || options.size() == 0) {
             throw new DialogParametersMissingException();
         }
         UserDialog dialog = new UserDialog(title);
         dialog.setPrompt(prompt);
-        for(String option: options) {
+        for (String option : options) {
             dialog.addOption(option);
         }
         return dialog;

@@ -1,16 +1,15 @@
 package processor;
 
-import javax.lang.model.element.NestingKind;
+import values.Values;
 
 /**
  * Created by Alexander Bazo on 15/01/16.
  */
 public class StringSplitter {
-    public static final String DEFAULT_DELIMITER = ",";
     private String delimiter;
 
     public StringSplitter() {
-        delimiter = DEFAULT_DELIMITER;
+        delimiter = Values.Strings.DEFAULT_SPLITTER_DELIMITER;
     }
 
     public StringSplitter(String delimiterString) {
@@ -19,13 +18,13 @@ public class StringSplitter {
 
     public String[] split(String string) throws StringSplitterException {
         String[] result = string.split(delimiter);
-        if(string.isEmpty()) {
+        if (string.isEmpty()) {
             throw new CanNotSplitEmptyStringException();
         }
-        if(string.indexOf(delimiter) == -1) {
+        if (string.indexOf(delimiter) == -1) {
             throw new StringDoesNotContainDelimiterException();
         }
-        if(result.length == 1) {
+        if (result.length == 1) {
             throw new EmptyRightSideAfterSplitException();
         }
         return result;

@@ -2,7 +2,6 @@ package dialog;
 
 import custom.CustomInputStream;
 import custom.CustomOutputStream;
-import dialog.UserDialog;
 
 import java.util.HashMap;
 
@@ -21,7 +20,7 @@ public class DialogProxy {
     }
 
     public void addDialog(UserDialog dialog) throws DialogAlreadyExistsException {
-        if(dialogs.get(dialog.getTitle()) != null) {
+        if (dialogs.get(dialog.getTitle()) != null) {
             throw new DialogAlreadyExistsException();
         } else {
             dialogs.put(dialog.getTitle(), dialog);
@@ -30,7 +29,7 @@ public class DialogProxy {
 
     public void showDialog(String dialogTitle, CustomOutputStream outputStream, CustomInputStream inputStream) throws DialogNotAvailableException {
         UserDialog dialog = dialogs.get(dialogTitle);
-        if(dialog == null) {
+        if (dialog == null) {
             throw new DialogNotAvailableException();
         } else {
             dialog.showDialog(outputStream, inputStream, listener);

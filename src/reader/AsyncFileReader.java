@@ -2,7 +2,6 @@ package reader;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 
 /**
@@ -25,13 +24,13 @@ public class AsyncFileReader {
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String line = null;
-            while(true) {
+            while (true) {
                 line = bufferedReader.readLine();
-                if(line == null) {
+                if (line == null) {
                     listener.onEndOfFileReached();
                     break;
                 } else {
-                    if(line.isEmpty()) {
+                    if (line.isEmpty()) {
                         continue;
                     } else {
                         listener.onLineRead(line);

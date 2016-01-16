@@ -5,6 +5,8 @@ package reader;
  */
 public interface FileReaderListener {
     public void onStartFileReading();
+
     public void onLineRead(String line);
+
     public void onEndOfFileReached();
 }

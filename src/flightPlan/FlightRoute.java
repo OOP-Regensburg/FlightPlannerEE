@@ -22,7 +22,7 @@ public class FlightRoute {
 
     public String getOrigin() throws RouteIsEmptyException {
         String origin = route.get(0);
-        if(origin == null) {
+        if (origin == null) {
             throw new RouteIsEmptyException();
         }
         return origin;
@@ -31,9 +31,9 @@ public class FlightRoute {
     public void printRoute(CustomOutputStream outputStream) {
         outputStream.println(Values.Strings.EN.FINISHED_ROUTE_PROMPT);
         Iterator<String> destinations = route.iterator();
-        while(destinations.hasNext()) {
+        while (destinations.hasNext()) {
             outputStream.print(destinations.next());
-            if(destinations.hasNext()) {
+            if (destinations.hasNext()) {
                 outputStream.print(Values.Strings.EN.ROUTE_DESTINATIONS_DELIMITER);
             }
 
